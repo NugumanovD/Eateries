@@ -11,22 +11,26 @@ import UIKit
 class EateriesTableViewController: UITableViewController {
     
     var restaurants: [Restaurant] = [
-        Restaurant(name: "Ogonek Grill&Bar", image: "ogonek.jpeg", type: "restaurant", location: "Dnipro bla bla bla bla bla bla bla bla bla bla bla bla asdasdasdasdasdasda", isVisited: false),
-        Restaurant(name: "Eлу", image: "elu.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Bonsai", image: "bonsai.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Дастархан", image: "dastarhan.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Индокитай", image: "indokitay.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "X.O.", image: "x.o..jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Балкан Гриль", image: "ogonek.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Respublica", image: "respublica.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Speak Easy", image: "speakeasy.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Morris Pub", image: "morris.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Вкусные Истории", image: "istorii.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Классик", image: "klassik.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Love&Life", image: "love.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Шок", image: "shok.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
-        Restaurant(name: "Бочка", image: "bochka.jpeg", type: "restaurant", location: "Dnipro", isVisited: false),
+        Restaurant(name: "Абажур", image: "ogonek.jpeg", type: "restaurant", location: "провулок Євгена Коновальця, 11", isVisited: false),
+        Restaurant(name: "Папа Карла", image: "elu.jpeg", type: "restaurant", location: "Dnipro просп. Яворницкого, 27", isVisited: false),
+        Restaurant(name: "Портофино", image: "bonsai.jpeg", type: "restaurant", location: "Dnipro вулиця Глінки, 2", isVisited: false),
+        Restaurant(name: "Reporter", image: "dastarhan.jpeg", type: "restaurant", location: "Dnipro вулиця Барикадна, 2", isVisited: false),
+        Restaurant(name: "Coast Restaurant & Lounge", image: "indokitay.jpeg", type: "restaurant", location: "Dnipro вулиця Січеславська Набережна, 61", isVisited: false),
+        Restaurant(name: "Подворотня", image: "x.o..jpeg", type: "restaurant", location: "Dnipro вул. Короленка, 19", isVisited: false),
+        Restaurant(name: "Сушия", image: "ogonek.jpeg", type: "restaurant", location: "Dnipro просп. Дмитрия Яворницкого, 50", isVisited: false),
+        Restaurant(name: "Бирхаус", image: "respublica.jpeg", type: "restaurant", location: "Dnipro  вулиця Січових Стрільців, 3", isVisited: false),
+        Restaurant(name: "Мыши Бляхера", image: "speakeasy.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 46", isVisited: false),
+        Restaurant(name: "Confetti", image: "morris.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 1м", isVisited: false),
+        Restaurant(name: "Джузеппе", image: "istorii.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 3", isVisited: false),
+        Restaurant(name: "Корица", image: "klassik.jpeg", type: "restaurant", location: "Dnipro проспект Гагаріна, 58", isVisited: false),
+        Restaurant(name: "Le Grill", image: "love.jpeg", type: "restaurant", location: "Dnipro бульвар Катеринославський, 1", isVisited: false),
+        Restaurant(name: "Felicita", image: "shok.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 88", isVisited: false),
+        Restaurant(name: "Бартоломео", image: "bochka.jpeg", type: "restaurant", location: "Dnipro вулиця Набережна Перемоги, 9Б", isVisited: false),
     ]
+    
+    @IBAction func close(segue: UIStoryboardSegue) {
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
@@ -135,7 +139,7 @@ class EateriesTableViewController: UITableViewController {
         if segue.identifier == "detailSegue" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let dvc = segue.destination as? EateryDetailViewController
-                dvc?.restaraunt = restaurants[indexPath.row]
+                dvc?.restaurant = restaurants[indexPath.row]
             }
         }
     }

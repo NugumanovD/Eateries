@@ -10,9 +10,19 @@ import UIKit
 
 class EateryDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var rateButton: UIButton!
+    @IBOutlet weak var mapButton: UIButton!
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
-    var restaraunt: Restaurant?
+   
+    var restaurant: Restaurant?
+    
+    @IBAction func unwindSegue(segue: UIStoryboardSegue) {
+        guard let svc = segue.source as? RateViewController else { return }
+        guard let rating = svc.restRating else { return }
+        rateButton.setImage(UIImage(named: rating), for: .normal)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = false
@@ -22,14 +32,22 @@ class EateryDetailViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let buttons = [rateButton, mapButton]
+        
+        for button in buttons {
+            guard let button = button else { break }
+            button.layer.cornerRadius = 5
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.white.cgColor
+        }
         tableView.estimatedRowHeight = 38
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        imageView.image = UIImage(named: restaraunt!.image)
-//        tableView.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-//        tableView.separatorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        imageView.image = UIImage(named: restaurant!.image)
+        //        tableView.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        //        tableView.separatorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        title = restaraunt!.name
+        title = restaurant!.name
         
     }
     
@@ -47,16 +65,16 @@ class EateryDetailViewController: UIViewController, UITableViewDataSource, UITab
         switch indexPath.row {
         case 0:
             cell.keyLabel.text = "Name"
-            cell.valueLabel.text = restaraunt!.name
+            cell.valueLabel.text = restaurant!.name
         case 1:
             cell.keyLabel.text = "Type"
-            cell.valueLabel.text = restaraunt!.type
+            cell.valueLabel.text = restaurant!.type
         case 2:
             cell.keyLabel.text = "Adress"
-            cell.valueLabel.text = restaraunt!.location
+            cell.valueLabel.text = restaurant!.location
         case 3:
             cell.keyLabel.text = "I was there"
-            cell.valueLabel.text = restaraunt!.isVisited ? "Yes" : "No"
+            cell.valueLabel.text = restaurant!.isVisited ? "Yes" : "No"
         default:
             break
         }
@@ -68,5 +86,24 @@ class EateryDetailViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "mapSegue" {
+            let dvc = segue.destination as! MapViewController
+            dvc.restaurant = self.restaurant
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
