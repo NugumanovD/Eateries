@@ -290,6 +290,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="Mzv-pi-DFb" id="mqQ-bw-2HK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGn-Bo-64W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vdR-Jv-gjx" userLabel="Exit" sceneMemberID="exit"/>
