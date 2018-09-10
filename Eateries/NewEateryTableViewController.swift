@@ -16,14 +16,17 @@ class NewEateryTableViewController: UITableViewController, UIImagePickerControll
     @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
+    var isVisited = true
     
     @IBAction func toggleIsVisitedPressed(_ sender: UIButton) {
         if sender == yesButton {
             sender.backgroundColor = #colorLiteral(red: 0.0001245593658, green: 0.8374748913, blue: 0.0001932342461, alpha: 1)
             noButton.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            isVisited = true
         } else {
             sender.backgroundColor = #colorLiteral(red: 1, green: 0.1040847067, blue: 0.1613085095, alpha: 1)
             yesButton.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            isVisited = false
         }
     }
     
@@ -31,6 +34,22 @@ class NewEateryTableViewController: UITableViewController, UIImagePickerControll
         if nameTextField?.text == "" || adressTextField?.text == "" || typeTextField?.text == "" {
             print("не все поля заполнены")
         } else {
+            if let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext {
+                let restaurant = Restaurant(context: context)
+                restaurant.name = nameTextField.text
+                restaurant.location = adressTextField.text
+                restaurant.type = typeTextField.text
+                restaurant.isVisited = isVisited
+                if let image = imageView.image {
+                    restaurant.image = UIImagePNGRepresentation(image)! as Data
+                }
+                do {
+                    try context.save()
+                    print("Сохранение удалось")
+                } catch let error as NSError {
+                    print("Не удалось сохранить данные \(error), \(error.userInfo)")
+                }
+            }
             performSegue(withIdentifier: "unwindSegueFromNewEatery", sender: self)
         }
         
