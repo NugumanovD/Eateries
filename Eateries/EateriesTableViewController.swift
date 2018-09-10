@@ -10,23 +10,23 @@ import UIKit
 
 class EateriesTableViewController: UITableViewController {
     
-    var restaurants: [Restaurant] = [
-        Restaurant(name: "Абажур", image: "ogonek.jpeg", type: "restaurant", location: "провулок Євгена Коновальця, 11", isVisited: false),
-        Restaurant(name: "Папа Карла", image: "elu.jpeg", type: "restaurant", location: "Dnipro просп. Яворницкого, 27", isVisited: false),
-        Restaurant(name: "Портофино", image: "bonsai.jpeg", type: "restaurant", location: "Dnipro вулиця Глінки, 2", isVisited: false),
-        Restaurant(name: "Reporter", image: "dastarhan.jpeg", type: "restaurant", location: "Dnipro вулиця Барикадна, 2", isVisited: false),
-        Restaurant(name: "Coast Restaurant & Lounge", image: "indokitay.jpeg", type: "restaurant", location: "Dnipro вулиця Січеславська Набережна, 61", isVisited: false),
-        Restaurant(name: "Подворотня", image: "x.o..jpeg", type: "restaurant", location: "Dnipro вул. Короленка, 19", isVisited: false),
-        Restaurant(name: "Сушия", image: "ogonek.jpeg", type: "restaurant", location: "Dnipro просп. Дмитрия Яворницкого, 50", isVisited: false),
-        Restaurant(name: "Бирхаус", image: "respublica.jpeg", type: "restaurant", location: "Dnipro  вулиця Січових Стрільців, 3", isVisited: false),
-        Restaurant(name: "Мыши Бляхера", image: "speakeasy.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 46", isVisited: false),
-        Restaurant(name: "Confetti", image: "morris.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 1м", isVisited: false),
-        Restaurant(name: "Джузеппе", image: "istorii.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 3", isVisited: false),
-        Restaurant(name: "Корица", image: "klassik.jpeg", type: "restaurant", location: "Dnipro проспект Гагаріна, 58", isVisited: false),
-        Restaurant(name: "Le Grill", image: "love.jpeg", type: "restaurant", location: "Dnipro бульвар Катеринославський, 1", isVisited: false),
-        Restaurant(name: "Felicita", image: "shok.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 88", isVisited: false),
-        Restaurant(name: "Бартоломео", image: "bochka.jpeg", type: "restaurant", location: "Dnipro вулиця Набережна Перемоги, 9Б", isVisited: false),
-    ]
+    var restaurants: [Restaurant] = []
+//        Restaurant(name: "Абажур", image: "ogonek.jpeg", type: "restaurant", location: "провулок Євгена Коновальця, 11", isVisited: false),
+//        Restaurant(name: "Папа Карла", image: "elu.jpeg", type: "restaurant", location: "Dnipro просп. Яворницкого, 27", isVisited: false),
+//        Restaurant(name: "Портофино", image: "bonsai.jpeg", type: "restaurant", location: "Dnipro вулиця Глінки, 2", isVisited: false),
+//        Restaurant(name: "Reporter", image: "dastarhan.jpeg", type: "restaurant", location: "Dnipro вулиця Барикадна, 2", isVisited: false),
+//        Restaurant(name: "Coast Restaurant & Lounge", image: "indokitay.jpeg", type: "restaurant", location: "Dnipro вулиця Січеславська Набережна, 61", isVisited: false),
+//        Restaurant(name: "Подворотня", image: "x.o..jpeg", type: "restaurant", location: "Dnipro вул. Короленка, 19", isVisited: false),
+//        Restaurant(name: "Сушия", image: "ogonek.jpeg", type: "restaurant", location: "Dnipro просп. Дмитрия Яворницкого, 50", isVisited: false),
+//        Restaurant(name: "Бирхаус", image: "respublica.jpeg", type: "restaurant", location: "Dnipro  вулиця Січових Стрільців, 3", isVisited: false),
+//        Restaurant(name: "Мыши Бляхера", image: "speakeasy.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 46", isVisited: false),
+//        Restaurant(name: "Confetti", image: "morris.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 1м", isVisited: false),
+//        Restaurant(name: "Джузеппе", image: "istorii.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 3", isVisited: false),
+//        Restaurant(name: "Корица", image: "klassik.jpeg", type: "restaurant", location: "Dnipro проспект Гагаріна, 58", isVisited: false),
+//        Restaurant(name: "Le Grill", image: "love.jpeg", type: "restaurant", location: "Dnipro бульвар Катеринославський, 1", isVisited: false),
+//        Restaurant(name: "Felicita", image: "shok.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 88", isVisited: false),
+//        Restaurant(name: "Бартоломео", image: "bochka.jpeg", type: "restaurant", location: "Dnipro вулиця Набережна Перемоги, 9Б", isVisited: false),
+//    ]
     
     @IBAction func close(segue: UIStoryboardSegue) {
         
@@ -61,7 +61,7 @@ class EateriesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EateriesTableViewCell
         
-        cell.thumbnailImageView.image = UIImage(named: restaurants[indexPath.row].image)
+        cell.thumbnailImageView.image = UIImage(data: restaurants[indexPath.row].image as! Data)
         cell.thumbnailImageView.layer.cornerRadius = 33.5
         cell.thumbnailImageView.clipsToBounds = true
         cell.nameLabel.text = restaurants[indexPath.row].name
@@ -119,8 +119,8 @@ class EateriesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .default, title: "Share") { (action, indexPath) in
-            let defaultText = "I'm here now" + self.restaurants[indexPath.row].name
-            if let image = UIImage(named: self.restaurants[indexPath.row].image) {
+            let defaultText = "I'm here now" + self.restaurants[indexPath.row].name!
+            if let image = UIImage(data: self.restaurants[indexPath.row].image as! Data) {
                 let activityController = UIActivityViewController(activityItems: [defaultText, image], applicationActivities: nil)
                 self.present(activityController, animated: true)
             }
