@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreData
 
 class EateriesTableViewController: UITableViewController {
+    
+    var fetchResultsController: NSFetchedResultsController<Restaurant>! = nil
     
     var restaurants: [Restaurant] = []
 //        Restaurant(name: "Абажур", image: "ogonek.jpeg", type: "restaurant", location: "провулок Євгена Коновальця, 11", isVisited: false),
@@ -42,7 +45,21 @@ class EateriesTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 85
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext {
+            fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            
+            do {
+                try fetchResultsController.performFetch()
+                restaurants = fetchResultsController.fetchedObjects!
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     // MARK: - Table view data source
