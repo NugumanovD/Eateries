@@ -69,7 +69,7 @@ class NewEateryTableViewController: UITableViewController, UIImagePickerControll
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imageView.image = info[UIImagePickerControllerEditedImage] as? UIImage
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .center
         imageView.clipsToBounds = true
         dismiss(animated: true, completion: nil)
     }
