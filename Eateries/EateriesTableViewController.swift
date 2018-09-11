@@ -14,25 +14,8 @@ class EateriesTableViewController: UITableViewController, NSFetchedResultsContro
     var fetchResultsController: NSFetchedResultsController<Restaurant>! = nil
     
     var restaurants: [Restaurant] = []
-//        Restaurant(name: "Абажур", image: "ogonek.jpeg", type: "restaurant", location: "провулок Євгена Коновальця, 11", isVisited: false),
-//        Restaurant(name: "Папа Карла", image: "elu.jpeg", type: "restaurant", location: "Dnipro просп. Яворницкого, 27", isVisited: false),
-//        Restaurant(name: "Портофино", image: "bonsai.jpeg", type: "restaurant", location: "Dnipro вулиця Глінки, 2", isVisited: false),
-//        Restaurant(name: "Reporter", image: "dastarhan.jpeg", type: "restaurant", location: "Dnipro вулиця Барикадна, 2", isVisited: false),
-//        Restaurant(name: "Coast Restaurant & Lounge", image: "indokitay.jpeg", type: "restaurant", location: "Dnipro вулиця Січеславська Набережна, 61", isVisited: false),
-//        Restaurant(name: "Подворотня", image: "x.o..jpeg", type: "restaurant", location: "Dnipro вул. Короленка, 19", isVisited: false),
-//        Restaurant(name: "Сушия", image: "ogonek.jpeg", type: "restaurant", location: "Dnipro просп. Дмитрия Яворницкого, 50", isVisited: false),
-//        Restaurant(name: "Бирхаус", image: "respublica.jpeg", type: "restaurant", location: "Dnipro  вулиця Січових Стрільців, 3", isVisited: false),
-//        Restaurant(name: "Мыши Бляхера", image: "speakeasy.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 46", isVisited: false),
-//        Restaurant(name: "Confetti", image: "morris.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 1м", isVisited: false),
-//        Restaurant(name: "Джузеппе", image: "istorii.jpeg", type: "restaurant", location: "Dnipro проспект Героїв, 3", isVisited: false),
-//        Restaurant(name: "Корица", image: "klassik.jpeg", type: "restaurant", location: "Dnipro проспект Гагаріна, 58", isVisited: false),
-//        Restaurant(name: "Le Grill", image: "love.jpeg", type: "restaurant", location: "Dnipro бульвар Катеринославський, 1", isVisited: false),
-//        Restaurant(name: "Felicita", image: "shok.jpeg", type: "restaurant", location: "Dnipro проспект Дмитра Яворницького, 88", isVisited: false),
-//        Restaurant(name: "Бартоломео", image: "bochka.jpeg", type: "restaurant", location: "Dnipro вулиця Набережна Перемоги, 9Б", isVisited: false),
-//    ]
     
     @IBAction func close(segue: UIStoryboardSegue) {
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +28,7 @@ class EateriesTableViewController: UITableViewController, NSFetchedResultsContro
         tableView.estimatedRowHeight = 85
         tableView.rowHeight = UITableViewAutomaticDimension
         
-         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -72,11 +55,11 @@ class EateriesTableViewController: UITableViewController, NSFetchedResultsContro
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert: guard let indexPath = newIndexPath else { break }
-            tableView.insertRows(at: [indexPath], with: .fade)
+        tableView.insertRows(at: [indexPath], with: .fade)
         case .delete: guard let indexPath = indexPath else { break }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.deleteRows(at: [indexPath], with: .fade)
         case .update: guard let indexPath = indexPath else { break }
-            tableView.reloadRows(at: [indexPath], with: .fade)
+        tableView.reloadRows(at: [indexPath], with: .fade)
         default:
             tableView.reloadData()
         }
@@ -109,45 +92,43 @@ class EateriesTableViewController: UITableViewController, NSFetchedResultsContro
         cell.nameLabel.text = restaurants[indexPath.row].name
         cell.typeLabel.text = restaurants[indexPath.row].type
         cell.locationLabel.text = restaurants[indexPath.row].location
-        
-        
         cell.accessoryType = self.restaurants[indexPath.row].isVisited ? .checkmark : .none
         
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        // First alert controller with action sheet style
-//        let ac = UIAlertController(title: nil, message: "Select an action", preferredStyle: .actionSheet)
-//        // First alert controller alert
-//        let call = UIAlertAction(title: "Call: +38 (095) 458-85-8\(indexPath.row)", style: .default) {
-//            (action: UIAlertAction) -> Void in
-//            // Second alert controller inside first action
-//            let alertC = UIAlertController(title: nil, message: "Call cannot be made", preferredStyle: .alert)
-//            // Second alert action
-//            let ok = UIAlertAction(title: "OK", style: .default)
-//            // Add action to second alert controller
-//            alertC.addAction(ok)
-//            // Present second alert controller
-//            self.present(alertC, animated: true)
-//        }
-//        // Second action
-//        let isVisitedTitle = self.restaurantsIsVisited[indexPath.row] ? "I wasn't here" : "I was here"
-//        let isVisited = UIAlertAction(title: isVisitedTitle, style: .default) { (action11) in
-//            let cell = tableView.cellForRow(at: indexPath)
-//            
-//            self.restaurantsIsVisited[indexPath.row] = !self.restaurantsIsVisited[indexPath.row]
-//            cell?.accessoryType = self.restaurantsIsVisited[indexPath.row] ? .checkmark : .none
-//        }
-//        // Third action
-//        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-//        // Add all actions to first alert controller
-//        ac.addAction(isVisited)
-//        ac.addAction(cancel)
-//        ac.addAction(call)
-//        // Present fisrt alert controller
-//        present(ac, animated: true)
-//    }
+    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        // First alert controller with action sheet style
+    //        let ac = UIAlertController(title: nil, message: "Select an action", preferredStyle: .actionSheet)
+    //        // First alert controller alert
+    //        let call = UIAlertAction(title: "Call: +38 (095) 458-85-8\(indexPath.row)", style: .default) {
+    //            (action: UIAlertAction) -> Void in
+    //            // Second alert controller inside first action
+    //            let alertC = UIAlertController(title: nil, message: "Call cannot be made", preferredStyle: .alert)
+    //            // Second alert action
+    //            let ok = UIAlertAction(title: "OK", style: .default)
+    //            // Add action to second alert controller
+    //            alertC.addAction(ok)
+    //            // Present second alert controller
+    //            self.present(alertC, animated: true)
+    //        }
+    //        // Second action
+    //        let isVisitedTitle = self.restaurantsIsVisited[indexPath.row] ? "I wasn't here" : "I was here"
+    //        let isVisited = UIAlertAction(title: isVisitedTitle, style: .default) { (action11) in
+    //            let cell = tableView.cellForRow(at: indexPath)
+    //
+    //            self.restaurantsIsVisited[indexPath.row] = !self.restaurantsIsVisited[indexPath.row]
+    //            cell?.accessoryType = self.restaurantsIsVisited[indexPath.row] ? .checkmark : .none
+    //        }
+    //        // Third action
+    //        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+    //        // Add all actions to first alert controller
+    //        ac.addAction(isVisited)
+    //        ac.addAction(cancel)
+    //        ac.addAction(call)
+    //        // Present fisrt alert controller
+    //        present(ac, animated: true)
+    //    }
     //
     //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     //
@@ -171,7 +152,20 @@ class EateriesTableViewController: UITableViewController, NSFetchedResultsContro
         let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
             self.restaurants.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            if let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext {
+                
+                let objectToDelete = self.fetchResultsController.object(at: indexPath)
+                context.delete(objectToDelete )
+                
+                do {
+                    try context.save()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
+        
         share.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         delete.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         return [delete, share]
@@ -180,12 +174,12 @@ class EateriesTableViewController: UITableViewController, NSFetchedResultsContro
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue" {
             if let indexPath = tableView.indexPathForSelectedRow {
+                
                 let dvc = segue.destination as? EateryDetailViewController
                 dvc?.restaurant = restaurants[indexPath.row]
             }
         }
     }
-    
 }
 
 

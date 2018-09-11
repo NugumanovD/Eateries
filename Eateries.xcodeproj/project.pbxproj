@@ -15,6 +15,7 @@
 		7B94C95921469A6E007EBF39 /* Eateries.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B94C95721469A6E007EBF39 /* Eateries.xcdatamodeld */; };
 		7BB7DE3F2142D5B200FA265C /* NewEateryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB7DE3E2142D5B200FA265C /* NewEateryTableViewController.swift */; };
 		7BCD3E462135A180009610D2 /* EateryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCD3E452135A180009610D2 /* EateryDetailTableViewCell.swift */; };
+		7BDDE5FD2147EF6000DAC3B5 /* note in Resources */ = {isa = PBXBuildFile; fileRef = 7BDDE5FC2147EF6000DAC3B5 /* note */; };
 		7BE1C40C21231E95001AA8CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE1C40B21231E95001AA8CD /* AppDelegate.swift */; };
 		7BE1C41121231E95001AA8CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BE1C40F21231E95001AA8CD /* Main.storyboard */; };
 		7BE1C41321231E95001AA8CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE1C41221231E95001AA8CD /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		7B94C95821469A6E007EBF39 /* Eateries.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Eateries.xcdatamodel; sourceTree = "<group>"; };
 		7BB7DE3E2142D5B200FA265C /* NewEateryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEateryTableViewController.swift; sourceTree = "<group>"; };
 		7BCD3E452135A180009610D2 /* EateryDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EateryDetailTableViewCell.swift; sourceTree = "<group>"; };
+		7BDDE5FC2147EF6000DAC3B5 /* note */ = {isa = PBXFileReference; lastKnownFileType = text; path = note; sourceTree = "<group>"; };
 		7BE1C40821231E95001AA8CD /* Eateries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eateries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE1C40B21231E95001AA8CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BE1C41021231E95001AA8CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				7BE1C41221231E95001AA8CD /* Assets.xcassets */,
 				7BE1C41421231E95001AA8CD /* LaunchScreen.storyboard */,
 				7BE1C41721231E95001AA8CD /* Info.plist */,
+				7BDDE5FC2147EF6000DAC3B5 /* note */,
 			);
 			path = Eateries;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				7BE1C41621231E95001AA8CD /* LaunchScreen.storyboard in Resources */,
 				7BE1C41321231E95001AA8CD /* Assets.xcassets in Resources */,
+				7BDDE5FD2147EF6000DAC3B5 /* note in Resources */,
 				7BE1C41121231E95001AA8CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

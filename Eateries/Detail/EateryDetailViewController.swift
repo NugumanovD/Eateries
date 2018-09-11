@@ -42,13 +42,9 @@ class EateryDetailViewController: UIViewController, UITableViewDataSource, UITab
         }
         tableView.estimatedRowHeight = 38
         tableView.rowHeight = UITableViewAutomaticDimension
-        
         imageView.image = UIImage(data: restaurant!.image as! Data)
-        //        tableView.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
-        //        tableView.separatorColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         title = restaurant!.name
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,7 +75,6 @@ class EateryDetailViewController: UIViewController, UITableViewDataSource, UITab
             break
         }
         cell.backgroundColor = UIColor.clear
-        
         return cell
     }
     
@@ -93,17 +88,4 @@ class EateryDetailViewController: UIViewController, UITableViewDataSource, UITab
             dvc.restaurant = self.restaurant
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
